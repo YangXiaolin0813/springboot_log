@@ -97,9 +97,9 @@ public class LogPoolManager {
 
         logger.info("LogPoolManager init successfully。。。。。。");
 
-        logManagerThreadPool.execute(new Runnable() {
-            @Override
-            public void run() {
+        logManagerThreadPool.execute( ()-> {
+//            @Override
+//            public void run() {
                 while (run.get()){
                     try {
                         // 线程休眠，具体时间根据项目的实际情况配置
@@ -130,7 +130,8 @@ public class LogPoolManager {
                 }
                 logger.info("LogPoolManager shutdown successfully");
             }
-        });
+//        }
+        );
     }
 
 
