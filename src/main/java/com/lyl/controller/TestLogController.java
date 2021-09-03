@@ -2,12 +2,17 @@ package com.lyl.controller;
 
 import com.lyl.bean.TestLogBean;
 import com.lyl.logpool.LogPoolManager;
+import com.lyl.service.RunnableTask1;
+import com.lyl.utils.ThreadPoolUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @PACKAGE_NAME: com.lyl.controller
@@ -40,6 +45,19 @@ public class TestLogController {
         }
 
         logger.info("log offer queue success !");
+    }
+
+    /**
+     * 异步处理1：线程池，创建新线程处理
+     * @return
+     */
+    @GetMapping(value = "test3")
+    public String test3(){
+        ExecutorService service = ThreadPoolUtil.getThreadPool();
+        RunnableTask1 task1 = new RunnableTask1();
+        service.execute(task1);
+        logger.info("=========》当前线程名："+Thread.currentThread().getName());
+        return "异步,正在解析......";
     }
 
 }

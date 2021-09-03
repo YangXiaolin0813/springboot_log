@@ -51,7 +51,7 @@ public class LogPoolManager {
     /**
      * 日志插入执行的最大的时间间隔，单位毫秒
      */
-    private long MAX_EXE_TiME = 5000;
+    private long MAX_EXE_TiME = 50000;
 
     /**
      * 创建一个单线程的线程池
